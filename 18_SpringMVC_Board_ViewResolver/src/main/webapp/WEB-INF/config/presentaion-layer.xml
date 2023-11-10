@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 스프링 HandlerMapping 등록 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<!-- 태그 사이 컨트롤러 bean id명 -->
+				<prop key="/login.do">login</prop>
+				<prop key="/getBoardList.do">getBoardList</prop>
+				<prop key="/getBoard.do">getBoard</prop>
+		
+				<prop key="/insertBoard.do">insertBoard</prop>
+				<prop key="/updateBoard.do">updateBoard</prop>
+				<prop key="/deleteBoard.do">deleteBoard</prop>
+				<prop key="/logout.do">logout</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 요청을 처리할 Controller 등록(객체 생성) -->
+	<bean id="login" class="com.spring.biz.view.controller.user.LoginController"></bean>
+	<bean id="getBoardList" class="com.spring.biz.view.board.GetBoardListController"/>
+	<bean id="insertBoard" class="com.spring.biz.view.board.InsertBoardController"/>
+	<bean id="updateBoard" class="com.spring.biz.view.board.UpdateBoardController"/>
+	<bean id="deleteBoard" class="com.spring.biz.view.board.DeleteBoardController"/>
+	<bean id="getBoard" class="com.spring.biz.view.board.GetBoardController"/>
+	<bean id="logout" class="com.spring.biz.view.controller.user.LogoutController"/> 
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/board/" />  <!-- 접두어 -->
+		<property name="suffix" value=".jsp" />  <!-- 접미어 -->
+	</bean>
+</beans>
